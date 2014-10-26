@@ -31,6 +31,7 @@ var require = {
         "validatorMessage": "vendor/validator/message",
         "validator": "vendor/validator/validator",
         "tabs": "vendor/tabs/tabs",
+        "response": "vendor/response/response",
         /* *
          * Helpers
          *
@@ -42,6 +43,7 @@ var require = {
         "tabs": {deps: ["jquery", "tab","knockout"]},
         "helpers": {deps: ["jquery"]},
         "validator": {deps: ["jquery"]},
-        "authEntity": {deps: ["jquery"]}
+        "authEntity": {deps: ["jquery"]},
+        "response": {deps: ["jquery"]}
     }
 };

@@ -1,34 +1,81 @@
 <div class="article-listing" style="float: left;width:50%;">
     <h2>Listing des articles</h2>
-    <a class="btn btn-primary" data-bind="click: createNewArticle">Créer un nouvelle article</a>
+    <a class="btn btn-primary aggro" data-bind="click: createNewArticle">Créer un nouvelle article</a>
+
+
+    <table class="table">
+        <thead>
+        <tr>
+            <th>
+                Titre
+            </th>
+            <th>
+                Contenu
+            </th>
+            <th>
+                Actions
+            </th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr data-bind="foreach:posts">
+            <td data-bind="text:title">
+
+            </td>
+            <td data-bind="text:content">
+
+            </td>
+            <td>
+                <a class="btn btn-warning" data-bind="click: $parent.editArticle.bind($data)">Editer</a>
+                <a class="btn btn-danger">Supprimer</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
 </div>
 <div class="saveEdit" id="saveEdit" style="float: left;width:50%;"
      data-bind="visible : saveEdit">
-    edit
     <div id="tabs">
         <ul data-bind="foreach: tabs">
             <li>
-                <a data-bind="text:'Tab ' + tabNumber, click: $parent.changeTab, $parent.tabActive :tabNumber, attr:{href:'#tabs-'+tabNumber}, css: { tabulous_active: tabNumber == $parent.tabActive}"></a>
+                <a data-bind="text:'Tab ' + tabNumber, click: $parent.tabsClass.change, attr:{href:'#tabs-'+tabNumber}"></a>
             </li>
         </ul>
         <div id="tabs_container" data-bind="foreach: tabs">
             <div class="tabs" data-bind="attr:{id: 'tabs-'+tabNumber}">
-                <div class="tab-label" data-bind="text:'Tab ' + tabNumber">
-                    <a class="close"></a>
-                </div>
                 <h2 data-bind="text: title"></h2>
+                <form data-bind="if: typeof id !== undefined, submit:$parent.updateArticle">
+                <form data-bind="ifnot: typeof id == 'undefined', submit:$parent.createArticle">
 
-                <form>
+                    <ul class="errors alert"
+                        data-bind="css:{
+                        'alert-danger':$parent.isError(),
+                        'alert-success':!$parent.isError()
+                        },visible:$parent.hasResponse, foreach: $parent.response">
+
+                        <li data-bind="text:$data"></li>
+                    </ul>
+
                     <div class="form-group">
-                        <label for="title">Titre</label>
-                        <input type="text" class="form-control" name="title" id="title"/>
+                        <label data-bind="attr:{for: 'tabs['+tabNumber+'][title]'}">Titre</label>
+                        <input type="text" class="form-control" name="title" data-bind="attr:{
+                        id: 'tabs['+tabNumber+'][title]',
+                        value:title}"
+                                />
+                    </div>
+
+                    <div class="form-group">
+                        <label data-bind="attr:{for: 'tabs['+tabNumber+'][content]'}">Contenu</label>
+                        <textarea name="content"
+                                  data-bind="text:content,
+                                  attr:{
+                                id: 'tabs['+tabNumber+'][content]'}"
+                                  class="form-control" cols="30" rows="10"></textarea>
                     </div>
                     <div class="form-group">
-                        <label for="content">Contenu</label>
-                        <textarea name="content" id="content" class="form-control" cols="30" rows="10"></textarea>
-                    </div>
-                    <div class="form-group">
-                        <input type="submit" class="btn btn-primary" value="Créer l'article !"/>
+                        <input name="id" data-bind="attr:{value:id}" type="hidden"/>
+                        <input type="submit" class="btn btn-lg btn-default" value="Créer l'article !"/>
                     </div>
                 </form>
             </div>

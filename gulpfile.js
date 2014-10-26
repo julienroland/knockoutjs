@@ -1,4 +1,7 @@
-var elixir = require('laravel-elixir');
+var elixir = require('laravel-elixir'),
+    livereload = require('gulp-livereload'),
+    compass = require('gulp-compass'),
+    gulp = require('gulp');
 
 /*
  |----------------------------------------------------------------
@@ -12,6 +15,12 @@ var elixir = require('laravel-elixir');
  */
 
 elixir(function (mix) {
-    mix.sass('alo.sass')
-        .scripts(['js/requirejs.js', , 'js/knockoutjs.js', 'js/app.js',], "resources/assets");
+    mix.sass('main.sass');
 });
+gulp.task('livereload', function() {
+    livereload.listen();
+    gulp.watch('public/**').on('change', livereload.changed);
+});
+gulp.watch('public/**', ['livereload']);
+
+

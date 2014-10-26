@@ -6,7 +6,7 @@
     <title>Knockoutjs</title>
     <!-- build:css -->
     <link href="bower_modules/components-bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <link href="css/tab.css" rel="stylesheet">
+    <link href="css/main.css" rel="stylesheet">
     <!-- endbuild -->
     <!-- build:js -->
     <script src="app/require.config.js"></script>
@@ -24,8 +24,7 @@
 </head>
 <body>
 <nav-bar params="route: route"></nav-bar>
-<div id="page" class="container" data-bind="component: { name: route().page, params: route }"
-     style="margin-top: 100px"></div>
+<div id="page" class="container" data-bind="component: { name: route().page, params: route }"></div>
 
 </body>
 </html>
