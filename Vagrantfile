@@ -2,9 +2,9 @@
 # vi: set ft=ruby :
 
 # Server Configuration
-hostname      = "emulsion2.dev"
-server_name   = "debian76-emulsion"
-server_ip       = "192.168.22.20"
+hostname      = "knockoutjs.dev"
+server_name   = "debian76-knockoutjs"
+server_ip       = "192.168.50.20"
 
 
 # =======================
