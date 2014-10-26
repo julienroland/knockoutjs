@@ -1,9 +1,18 @@
-define(["knockout", "crossroads", "hasher", "helpers", "filters"], function (ko, crossroads, hasher, helpers) {
+define(["knockout", "crossroads", "hasher", "helpers", "filters"], function (ko, crossroads, hasher) {
     var lang = window.location.pathname.split("/")[1].length == 2 ? window.location.pathname.split("/")[1] : false;
     return new Router({
         routes: [
-            {url: '', params: {page: 'home-page', before: 'auth'}},
-            {url: 'about', params: {page: 'about-page', before: 'auth'}},
+            /* *
+             * Auth require routes
+             *
+             * */
+            {
+                params: {before: 'auth'},
+                routes: [
+                    {url: '', params: {page: 'home-page'}},
+                    {url: 'about', params: {page: 'about-page'}},
+                ]
+            },
             {url: 'auth/login', params: {page: 'auth/login', before: 'guest'}},
             /* *
              * Admin
@@ -24,11 +33,13 @@ define(["knockout", "crossroads", "hasher", "helpers", "filters"], function (ko,
         var currentRoute = this.currentRoute = ko.observable({});
 
         ko.utils.arrayForEach(config.routes, function (route) {
-            if (typeof route.prefix !== "undefined" && typeof route.routes !== "undefined") {
+            if (typeof route.prefix !== "undefined" || typeof route.routes !== "undefined") {
                 ko.utils.arrayForEach(route.routes, function (prefixRoute) {
-                    prefixRoute.url = route.prefix + '/' + prefixRoute.url;
+                    if (typeof route.prefix !== "undefined") {
+                        prefixRoute.url = route.prefix + '/' + prefixRoute.url;
+                    }
                     crossroads.addRoute(prefixRoute.url, function (requestParams) {
-                        var params = helpers.merge(route.params, prefixRoute.params);
+                        var params = new Helpers().merge(route.params, prefixRoute.params);
                         console.log(params);
                         new filters(params);
                         currentRoute(ko.utils.extend(requestParams, params));
