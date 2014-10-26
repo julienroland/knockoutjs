@@ -10,14 +10,10 @@ define(["knockout", "text!./index.html", "tab", "tweenlite"], function (ko, inde
         self.createNewArticle = function () {
             console.log('create');
             self.titleTypeAction('Créer un nouvel article')
-            ko.components.get('article-tab', function (template) {
-                console.log(template[0]);
-                self.nbTabs(self.nbTabs() + 1);
-                self.tabs.push({
-                    tabNumber: self.nbTabs(),
-                    template: template.template[0],
-                    title: self.titleTypeAction()
-                });
+            self.nbTabs(self.nbTabs() + 1);
+            self.tabs.push({
+                tabNumber: self.nbTabs(),
+                title: self.titleTypeAction()
             });
             console.log(self.tabs());
             self.saveEdit(true);
