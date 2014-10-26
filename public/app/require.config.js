@@ -29,7 +29,12 @@ var require = {
          *
          * */
         "validatorMessage": "vendor/validator/message",
-        "validator": "vendor/validator/validator"
+        "validator": "vendor/validator/validator",
+        /* *
+         * Helpers
+         *
+         * */
+        "helpers": "helpers/helpers"
     },
     shim: {
         "bootstrap": {deps: ["jquery"]}
