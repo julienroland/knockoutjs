@@ -30,6 +30,7 @@ var require = {
          * */
         "validatorMessage": "vendor/validator/message",
         "validator": "vendor/validator/validator",
+        "tabs": "vendor/tabs/tabs",
         /* *
          * Helpers
          *
@@ -37,6 +38,10 @@ var require = {
         "helpers": "helpers/helpers"
     },
     shim: {
-        "bootstrap": {deps: ["jquery"]}
+        "bootstrap": {deps: ["jquery"]},
+        "tabs": {deps: ["jquery", "tab","knockout"]},
+        "helpers": {deps: ["jquery"]},
+        "validator": {deps: ["jquery"]},
+        "authEntity": {deps: ["jquery"]}
     }
 };

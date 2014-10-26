@@ -4,12 +4,15 @@
 </div>
 <div class="saveEdit" id="saveEdit" style="float: left;width:50%;"
      data-bind="visible : saveEdit">
+    edit
     <div id="tabs">
         <ul data-bind="foreach: tabs">
-            <li><a data-bind="text:'Tab ' + tabNumber, attr:{href: '#tabs-'+tabNumber}"></a></li>
+            <li>
+                <a data-bind="text:'Tab ' + tabNumber, click: $parent.changeTab, $parent.tabActive :tabNumber, attr:{href:'#tabs-'+tabNumber}, css: { tabulous_active: tabNumber == $parent.tabActive}"></a>
+            </li>
         </ul>
         <div id="tabs_container" data-bind="foreach: tabs">
-            <div data-bind="attr :{id: 'tabs-'+tabNumber}">
+            <div class="tabs" data-bind="attr:{id: 'tabs-'+tabNumber}">
                 <div class="tab-label" data-bind="text:'Tab ' + tabNumber">
                     <a class="close"></a>
                 </div>

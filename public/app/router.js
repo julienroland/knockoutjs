@@ -1,4 +1,4 @@
-define(["knockout", "crossroads", "hasher", "helpers", "filters"], function (ko, crossroads, hasher) {
+define(["knockout", "crossroads", "hasher", "helpers", "filters"], function (ko, crossroads, hasher, Helpers) {
     var lang = window.location.pathname.split("/")[1].length == 2 ? window.location.pathname.split("/")[1] : false;
     return new Router({
         routes: [

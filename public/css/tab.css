@@ -21,6 +21,7 @@ p {
 #tabs li,#tabs2 li,#tabs3 li,#tabs4 li,#tabs5 li {
     float: left;
     margin-right: 2px;
+    list-style-type: none;
 }
 
 #tabs li a,#tabs2 li a,#tabs3 li a,#tabs4 li a,#tabs5 li a {
@@ -42,7 +43,7 @@ p {
     background: white;
 }
 
-#tabs_container div {
+#tabs_container div.tabs {
     margin-right: 40px;
 }
 
@@ -200,7 +201,7 @@ p {
     color: #655c89 !important;
 }
 
-.tabulousclear {
+.tabulousclear:last-child {
     display: block;
     clear: both;
 }
